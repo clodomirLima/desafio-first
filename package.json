@@ -1,0 +1,30 @@
+{
+  "name": "desafio-funcionario",
+  "version": "1.0.0",
+  "description": "Lambda que para gerenciar base de funcionarios",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./server.js",
+    "test": "jest --logHeapUsage --runInBand --detectOpenHandles --forceExit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clodomirLima/desafio-funcionario"
+  },
+  "author": "Jheimis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clodomirLima/desafio-funcionario/issues"
+  },
+  "homepage": "https://github.com/clodomirLima/desafio-funcionario#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.17.2",
+    "jaeger-tracer-decorator": "^3.0.2",
+    "jest": "^29.3.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15",
+    "sequelize": "^6.21.3"
+  }
+}

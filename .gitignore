@@ -25,6 +25,11 @@
 node_modules/
 package-lock.json
 
+# dotenv environment variables file
+.env
+.env.test
+.env*.local
+
 # IDEs and editors
 /.idea
 .project

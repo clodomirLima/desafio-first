@@ -6,16 +6,16 @@ const handler = async (event) => {
     const db = new Database();
     db.init()
     try {
-        console.log(event)
+        console.log("event", event);
+
         const body = event.body ? JSON.parse(event.body) : null;
         const headerParams = event.headers;
         const xAction = headerParams['x-action'];
         const id = event.queryStringParameters ? event.queryStringParameters.id : null;
-        console.log('id', id);
         console.log('xAction', xAction);
         let result;
         switch (xAction) {
-            case 'consulta-funcionario':
+            case 'listar-funcionario':
                 result = await apiController.findAllFuncionario();
                 break;
             case 'consulta-funcionario-por-id':

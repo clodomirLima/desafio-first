@@ -1,6 +1,6 @@
-const ApiController = require("./api/localApi/controller/apiController");
+const FuncionarioController = require("./api/localApi/controller/funcionarioController");
 const Database = require("./api/localApi/database/conectDB");
-const apiController = new ApiController();
+const funcionarioController = new FuncionarioController();
 
 const handler = async (event) => {
     const db = new Database();
@@ -16,16 +16,16 @@ const handler = async (event) => {
         let result;
         switch (xAction) {
             case 'listar-funcionario':
-                result = await apiController.findAllFuncionario();
+                result = await funcionarioController.findAllFuncionario();
                 break;
             case 'consulta-funcionario-por-id':
-                result = await apiController.findAOneFuncionario(id);
+                result = await funcionarioController.findAOneFuncionario(id);
                 break;
             case 'alterar-funcionario':
-                result = await apiController.updateFuncionario(body);
+                result = await funcionarioController.updateFuncionario(body);
                 break;
             case 'deletar-funcionario':
-                result = await apiController.deleteFuncionario(id);
+                result = await funcionarioController.deleteFuncionario(id);
                 break;
             default:
                 result = {

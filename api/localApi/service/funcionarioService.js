@@ -1,19 +1,17 @@
 const Funcionario = require('../models/funcionarioTb')
 const Database = require('../database/conectDB')
 
-class ApiService {
+class FuncionarioService {
     async findAllFuncionario() {
         const db = new Database();
         db.init()
         try {
             const result = await Funcionario.findAll();
-            console.log('result' ,result);
             return result;
         } catch (error) {
-            console.log('error findAllFuncionario', error);
-            throw new Error(error);
+            throw new Error(error.message);
         } finally {
-            // db.close();
+            db.close();
         }
     }
 
@@ -28,7 +26,7 @@ class ApiService {
                 message: "Funcionario nao encontrado"
             }
         } catch (error) {
-            console.log(error);
+            throw new Error(error.message);
         } finally {
             db.close();
         }
@@ -53,7 +51,7 @@ class ApiService {
                 message: "Pessoa altera com sucesso!"
             };
         } catch (error) {
-            console.log(error);
+            throw new Error(error.message);
         } finally {
             db.close();
         }
@@ -73,7 +71,7 @@ class ApiService {
                 message: "Pessoa excluida com sucesso!"
             };
         } catch (error) {
-            console.log(error);
+            throw new Error(error.message);
         } finally {
             db.close();
         }
@@ -81,4 +79,4 @@ class ApiService {
 
 }
 
-module.exports = ApiService
+module.exports = FuncionarioService

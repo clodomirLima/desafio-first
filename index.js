@@ -1,13 +1,9 @@
-const FuncionarioController = require("./api/localApi/controller/funcionarioController");
-const Database = require("./api/localApi/database/conectDB");
+const FuncionarioController = require("./src/controller/funcionarioController");
 const funcionarioController = new FuncionarioController();
 
 const handler = async (event) => {
-    const db = new Database();
-    db.init()
     try {
         console.log("event", event);
-
         const body = event.body ? JSON.parse(event.body) : null;
         const headerParams = event.headers;
         const xAction = headerParams['x-action'];

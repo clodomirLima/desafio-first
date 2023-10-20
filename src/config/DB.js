@@ -2,10 +2,10 @@ const Sequelize = require('sequelize');
 require('dotenv').config()
 
 const get = () => {
-  const dbName = process.env.DB_NAME;
-  const dbUser = process.env.DB_USER;
-  const dbPassword = process.env.DB_PASSWORD;
-  const dbHost = process.env.DB_HOST;
+  const dbName = 'desafio_first_decision';
+  const dbUser = 'root';
+  const dbPassword = '';
+  const dbHost = '127.0.0.1';
   const dbPort = 3306;
   const dbDialect = 'mysql';
 

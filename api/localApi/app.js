@@ -1,33 +1,38 @@
 const express = require("express");
 const app = express();
-const ApiController = require("./controller/apiController");
+const PessoaController = require("../../src/controller/pessoaController");
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
+const pessoaController = new PessoaController();
 
-app.get("/consulta-funcionario", async function (req, res) {
-    const apiController = new ApiController();
-    const result = await apiController.findAllFuncionario();
+app.get("/pessoas", async function (req, res) {
+    const result = await pessoaController.findAllPessoas();
     return res.json(result);
 });
 
-app.get("/consulta-funcionario/:id", async function (req, res) {
+app.get("/pessoas/:id", async function (req, res) {
     const id = req.params.id;
-    const apiController = new ApiController();
-    const result = await apiController.findAOneFuncionario(id);
+    const result = await pessoaController.findByIdPessoa(id);
     return res.json(result);
 });
 
-app.put("/alterar-funcionario", async function (req, res) {
-    const apiController = new ApiController();
-    const result = await apiController.updateFuncionario(req.body);
+app.post("/pessoas", async function (req, res) {
+    const body = req.body;
+    const result = await pessoaController.createPessoa(body, res);
     return res.json(result);
 });
 
-app.delete("/deletar-funcionario/:id", async function (req, res) {
+app.put("/pessoas/:id", async function (req, res) {
     const id = req.params.id;
-    const apiController = new ApiController();
-    const result = await apiController.deleteFuncionario(id);
+    const body = req.body;
+    const result = await pessoaController.updatePessoa(id, body);
+    return res.json(result);
+});
+
+app.delete("/pessoas/:id", async function (req, res) {
+    const id = req.params.id;
+    const result = await pessoaController.deletarPessoa(id);
     return res.json(result);
 });
 module.exports = app;

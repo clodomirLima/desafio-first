@@ -1,7 +1,7 @@
-const PessoaController = require("../../../src/controller/pessoaController");
+const PessoaService = require('../../../src/service/pessoaService');
 
-describe("PessoaController", () => {
-  let pessoaController = new PessoaController();;
+describe("PessoaService", () => {
+  let  pessoaService = new PessoaService();
   const mockResult = {
     id: 2,
     nome: "Mariano",
@@ -17,7 +17,7 @@ describe("PessoaController", () => {
   };
 
   beforeAll(() => {
-    jest.spyOn(pessoaController, "findAllPessoas").mockImplementation(() => [
+    jest.spyOn(pessoaService, "findAllPessoas").mockImplementation(() => [
       {
         id: 2,
         nome: "Mariano",
@@ -34,30 +34,30 @@ describe("PessoaController", () => {
     ]);
 
     jest
-      .spyOn(pessoaController, "findByIdPessoa")
+      .spyOn(pessoaService, "findByIdPessoa")
       .mockImplementation(() => mockResult);
 
     const resultMockCreatePessoa = { message: "Pessoa Criada com sucesso!" };
     jest
-      .spyOn(pessoaController, "createPessoa")
+      .spyOn(pessoaService, "createPessoa")
       .mockImplementation(() => resultMockCreatePessoa);
 
     const resultMockUpdatePessoa = {
       message: "Pessoa atualizada com sucesso!",
     };
     jest
-      .spyOn(pessoaController, "updatePessoa")
+      .spyOn(pessoaService, "updatePessoa")
       .mockImplementation(() => resultMockUpdatePessoa);
 
     const resultMockDeletePessoa = { message: "Pessoa excluida com sucesso!" };
     jest
-      .spyOn(pessoaController, "deletarPessoa")
+      .spyOn(pessoaService, "deletarPessoa")
       .mockImplementation(() => resultMockDeletePessoa);
   });
 
   describe("findAllPessoas", () => {
     it("should call findAllPessoas from PessoaService and return the result", async () => {
-      const result = await pessoaController.findAllPessoas();
+      const result = await pessoaService.findAllPessoas();
       expect(result).toEqual([
         {
           id: 2,
@@ -93,14 +93,14 @@ describe("PessoaController", () => {
         cpfCnpj: "73864436095",
       };
 
-      const result = await pessoaController.findByIdPessoa(id);
+      const result = await pessoaService.findByIdPessoa(id);
       expect(result).toEqual(expectedResult);
     });
   });
 
   describe("createPessoa", () => {
     it("should call createPessoa from PessoaService with the provided body and return the result", async () => {
-      const result = await pessoaController.createPessoa({
+      const result = await pessoaService.createPessoa({
         nome: "Mariano",
         sobreNome: "Reis",
         dataNascimento: "1999-10-20",
@@ -122,7 +122,7 @@ describe("PessoaController", () => {
   describe("updatePessoa", () => {
     it("should call updatePessoa from PessoaService with the provided ID and body, and return the result", async () => {
       const id = 1;
-      const result = await pessoaController.updatePessoa(id, {
+      const result = await pessoaService.updatePessoa(id, {
         nome: "Mariano",
         sobreNome: "Reis",
         dataNascimento: "1999-10-20",
@@ -146,7 +146,7 @@ describe("PessoaController", () => {
     it("should call deletarPessoa from PessoaService with the provided ID and return the result", async () => {
       const id = 1;
        const resultMockDeletePessoa = { message: "Pessoa excluida com sucesso!" };
-      const result = await pessoaController.deletarPessoa(id);
+      const result = await pessoaService.deletarPessoa(id);
 
       expect(result).toEqual(resultMockDeletePessoa);
     });

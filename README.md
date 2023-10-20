@@ -3,6 +3,7 @@
 # Pré-requisitos
 - versão do node 14.16.1
 - executar o script sql -> desafio-first\script.sql
+- alterar o arquivo .env de acordo com as suas configurações do banco de dados
 
 # Como executar o projeto
 - npm install 

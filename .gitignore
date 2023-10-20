@@ -5,21 +5,7 @@
 /tmp
 /out-tsc
 /data
-/k8s/data
-/CachedData
-/User
-/logs
-/Cache
-/GPUCache
-/CachedExtensions
-/Backups
-/Local Storage
-/log
 /libs
-
-# Database Local
-/bd_Data
-/metabase-data
 
 # dependencies
 node_modules/
@@ -64,19 +50,3 @@ testem.log
 workspace.json
 test-report.xml
 
-# System Files
-.DS_Store
-Thumbs.db
-
-# Test files - executions
-D2018*
-jmeter.log
-
-# Sonar - Static Analysis
-.scannerwork
-/node_modules/
-./node_modules/
-../node_modules/
-/dist/
-/.vscode/
-/.bbdev/

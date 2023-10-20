@@ -17,7 +17,7 @@ class PessoaService {
     }
   }
 
-  async findByIdPessoa(id) {
+  async findByIdPessoa(id, res) {
     const db = new Database();
     db.init();
     try {
@@ -28,10 +28,9 @@ class PessoaService {
       });
 
       if (!result) {
-        return {
-          message: "Pessoa nao encontrada com idInformado",
-        };
+        return res.status(400).send({ message: "Pessoa Não encontrada" });
       }
+
       return result;
     } catch (error) {
       throw new Error(error.message);
@@ -64,27 +63,30 @@ class PessoaService {
       if (!validadeCpfCnpj)
         return res.status(500).send({ message: "Cpf ou Cnpj inválido" });
 
-        const result = await Pessoa.create({
-        nome,
-        sobreNome,
-        dataNascimento,
-        email,
-        telefone,
-        endereco,
-        cidade,
-        estado,
-        cep,
-        cpfCnpj,
+      const created = await Pessoa.findOrCreate({
+        where: { email },
+        defaults: {
+          nome,
+          sobreNome,
+          dataNascimento,
+          email,
+          telefone,
+          endereco,
+          cidade,
+          estado,
+          cep,
+          cpfCnpj,
+        },
       });
 
-      if (result) {
+      if (created[1]) {
         return {
           message: "Pessoa Criada com sucesso!",
         };
       }
-      return result;
-    } catch (error) {
-      throw new Error(error.message);
+      return res
+        .status(500)
+        .send({ message: "Essa pessoa ja esta cadastrada!" });
     } finally {
       db.close();
     }
@@ -106,6 +108,7 @@ class PessoaService {
         cep,
         cpfCnpj,
       } = body;
+
       const result = await Pessoa.update(
         {
           nome,

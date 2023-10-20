@@ -5,15 +5,15 @@ class PessoaController {
     const pessoaService = new PessoaService();
 
     const result = await pessoaService.findAllPessoas({
-      raw: true
+      raw: true,
     });
     return result;
   }
 
-  async findByIdPessoa(id) {
+  async findByIdPessoa(id, res) {
     const pessoaService = new PessoaService();
 
-    const result = await pessoaService.findByIdPessoa(id);
+    const result = await pessoaService.findByIdPessoa(id, res);
     return result;
   }
 

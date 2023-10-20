@@ -1,4 +1,4 @@
-const { Sequelize, Model } = require('sequelize');
+const { Sequelize, Model } = require("sequelize");
 
 class Pessoa extends Model {
   static init(sequelize) {
@@ -8,65 +8,65 @@ class Pessoa extends Model {
           type: Sequelize.BIGINT,
           autoIncrement: true,
           primaryKey: true,
-          field: 'ID',
+          field: "ID",
         },
         nome: {
           type: Sequelize.BIGINT,
-          field: 'Nome',
+          field: "Nome",
           allowNull: false,
         },
         sobreNome: {
           type: Sequelize.STRING(255),
-          field: 'Sobrenome',
+          field: "Sobrenome",
           allowNull: false,
         },
         dataNascimento: {
           type: Sequelize.DATE,
-          field: 'DataNascimento',
+          field: "DataNascimento",
           allowNull: false,
         },
         email: {
           type: Sequelize.STRING(255),
-          field: 'Email',
+          field: "Email",
           allowNull: false,
         },
         telefone: {
           type: Sequelize.STRING(255),
-          field: 'Telefone',
+          field: "Telefone",
           allowNull: false,
         },
         endereco: {
           type: Sequelize.STRING(255),
-          field: 'Endereco',
+          field: "Endereco",
           allowNull: false,
         },
         cidade: {
           type: Sequelize.STRING(100),
-          field: 'Cidade',
+          field: "Cidade",
           allowNull: false,
         },
         estado: {
           type: Sequelize.STRING(50),
-          field: 'Estado',
+          field: "Estado",
           allowNull: false,
         },
         cep: {
           type: Sequelize.STRING(10),
-          field: 'Estado',
+          field: "Estado",
           allowNull: false,
         },
         cpfCnpj: {
           type: Sequelize.STRING(14),
-          field: 'CPF_CNPJ',
+          field: "CPF_CNPJ",
           allowNull: false,
         },
       },
       {
         sequelize,
-        modelName: 'Pessoa',
+        modelName: "Pessoa",
         freezeTableName: true,
         timestamps: false,
-      },
+      }
     );
 
     return this;

@@ -1,7 +1,7 @@
 {
   "name": "desafio-funcionario",
   "version": "1.0.0",
-  "description": "Lambda que para gerenciar base de funcionarios",
+  "description": "Microsserviço de Pessoas",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./server.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/clodomirLima/desafio-funcionario"
+    "url": "https://github.com/clodomirLima/desafio-first"
   },
   "author": "Jheimis",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/clodomirLima/desafio-funcionario/issues"
+    "url": "https://github.com/clodomirLima/desafio-first/issues"
   },
-  "homepage": "https://github.com/clodomirLima/desafio-funcionario#readme",
+  "homepage": "https://github.com/clodomirLima/desafio-first#readme",
   "dependencies": {
     "chai": "^4.3.10",
     "dotenv": "^16.0.3",

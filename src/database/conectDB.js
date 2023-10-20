@@ -1,6 +1,6 @@
-const Sequelize = require('sequelize');
-const databaseConfig = require('../config/DB');
-const Pessoa = require('../models/pessoa');
+const Sequelize = require("sequelize");
+const databaseConfig = require("../config/DB");
+const Pessoa = require("../models/pessoa");
 
 const models = [Pessoa];
 
@@ -13,8 +13,9 @@ class Database {
     this.connection = new Sequelize(databaseConfig.get());
     models
       .map((model) => model.init(this.connection))
-      .map((model) => model.associate &&
-        model.associate(this.connection.models));
+      .map(
+        (model) => model.associate && model.associate(this.connection.models)
+      );
   }
 
   close() {

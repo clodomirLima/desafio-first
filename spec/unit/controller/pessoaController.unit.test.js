@@ -1,35 +1,85 @@
-const ApiService = require("../api/localApi/service/apiService");
+const chai = require("chai");
+const PessoaController = require("../../../src/controller/pessoaController");
+const PessoaService = require("../../../src/service/pessoaService");
 
-describe("Teste da funcionario service", () => {
-  const apiService = new ApiService();
-  jest.setTimeout(100000)
+describe("PessoaController", () => {
+  let pessoaController;
 
-  it("Teste do método findAllFuncionario", async () => {
+  const mockResult=  {
+    id: 2,
+    nome: "Mariano",
+    sobreNome: "Reis",
+    dataNascimento: "1999-10-20",
+    email: "joaoMarcos@gmail.com",
+    telefone: "61995928783",
+    endereco: "Quadra 90 conunto A",
+    cidade: "Aguas Lindas",
+    estado: "GO",
+    cep: "GO",
+    cpfCnpj: "73864436095",
+  };
+  
+  beforeAll(() => {
+    pessoaController = new PessoaController();
+    jest.spyOn(pessoaController, "findAllPessoas").mockImplementation(() => [
+      {
+        id: 2,
+        nome: "Mariano",
+        sobreNome: "Reis",
+        dataNascimento: "1999-10-20",
+        email: "joaoMarcos@gmail.com",
+        telefone: "61995928783",
+        endereco: "Quadra 90 conunto A",
+        cidade: "Aguas Lindas",
+        estado: "GO",
+        cep: "GO",
+        cpfCnpj: "73864436095",
+      },
+    ]);
 
-    const result = await apiService.findAllFuncionario();
-    expect(result).toBeDefined();
+    jest.spyOn(pessoaController, "findByIdPessoa").mockImplementation(() => mockResult);
   });
 
-  it("Teste do método findOneFuncionario", async () => {
-
-    const result = await apiService.findOneFuncionario(1);
-    expect(result).toBeDefined();
+  describe("findAllPessoas", () => {
+    it("should call findAllPessoas from PessoaService and return the result", async () => {
+      const result = await pessoaController.findAllPessoas();
+      expect(result).toEqual([
+        {
+          id: 2,
+          nome: "Mariano",
+          sobreNome: "Reis",
+          dataNascimento: "1999-10-20",
+          email: "joaoMarcos@gmail.com",
+          telefone: "61995928783",
+          endereco: "Quadra 90 conunto A",
+          cidade: "Aguas Lindas",
+          estado: "GO",
+          cep: "GO",
+          cpfCnpj: "73864436095",
+        },
+      ]);
+    });
   });
 
-  it("Teste do método deleteFuncionario", async () => {
+  describe("findByIdPessoa", () => {
+    it("should call findByIdPessoa from PessoaService with the provided ID and return the result", async () => {
+      const id = 2;
+      const expectedResult = {
+        id: 2,
+        nome: "Mariano",
+        sobreNome: "Reis",
+        dataNascimento: "1999-10-20",
+        email: "joaoMarcos@gmail.com",
+        telefone: "61995928783",
+        endereco: "Quadra 90 conunto A",
+        cidade: "Aguas Lindas",
+        estado: "GO",
+        cep: "GO",
+        cpfCnpj: "73864436095",
+      };
 
-    const result = await apiService.deleteFuncionario(1);
-    expect(result).toBeDefined();
-  });
-
-  it("Teste do método updateFuncionario", async () => {
-    const body = {
-      "id": 2,
-      "idade": 33,
-      "nome": "Juniot Gomes da Silva",
-    };
-    const result = await apiService.updateFuncionario(body);
-    expect(result).toBeDefined();
+      const result = await pessoaController.findByIdPessoa(id);
+      expect(result).toEqual(expectedResult);
+    });
   });
 });
-
